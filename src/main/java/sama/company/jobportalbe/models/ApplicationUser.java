@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -27,38 +28,71 @@ public class ApplicationUser implements UserDetails {
     )
     private Set<Role> authorities;
 
+    public ApplicationUser() {
+        super();
+        this.authorities = new HashSet<Role>();
+    }
+
+    public ApplicationUser(Integer userId, String username, String password, Set<Role> authoritiess) {
+        super();
+        this.userId = userId;
+        this.username = username;
+        this.password = password;
+        this.authorities = authoritiess;
+    }
+
+    public Integer getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.authorities;
+    }
+
+    public void setAuthorities(Set<Role> authorities) {
+        this.authorities = authorities;
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
