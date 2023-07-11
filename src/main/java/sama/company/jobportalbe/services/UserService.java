@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import sama.company.jobportalbe.models.ApplicationUser;
 import sama.company.jobportalbe.models.Role;
+import sama.company.jobportalbe.repository.UserRepository;
 
 
 import java.beans.BeanProperty;
@@ -23,13 +24,12 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder encoder;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("In the details service");
-        if (!username.equals("sama")) throw new UsernameNotFoundException("Not sama");
-        Set<Role> roles = new HashSet<>();
-        roles.add(new Role(1, "USER"));
-        return new ApplicationUser(1, "sama", encoder.encode("hello"), roles);
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("user is not valid"));
     }
 }
