@@ -1,8 +1,13 @@
 package sama.company.jobportalbe.models;
 
-import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.security.core.GrantedAuthority;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "roles")
@@ -32,15 +37,15 @@ public class Role implements GrantedAuthority {
         return this.authority;
     }
 
-    public void setAuthority(String authority){
+    public void setAuthority(String authority) {
         this.authority = authority;
     }
 
-    public Integer getRoleId(){
+    public Integer getRoleId() {
         return this.roleId;
     }
 
-    public void setRoleId(Integer roleId){
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 }

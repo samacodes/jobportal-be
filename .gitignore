@@ -29,3 +29,8 @@ target/
 # IDE
 .idea
 .vscode
+
+# jdtls
+.settings
+.classpath
+.project
