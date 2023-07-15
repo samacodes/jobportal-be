@@ -48,6 +48,7 @@ public class SecurityConfiguration {
     public AuthenticationManager authManager(UserDetailsService detailsService) {
         DaoAuthenticationProvider daoProvider = new DaoAuthenticationProvider();
         daoProvider.setUserDetailsService(detailsService);
+        daoProvider.setPasswordEncoder(passwordEncoder());
         return new ProviderManager(daoProvider);
     }
 
@@ -62,9 +63,8 @@ public class SecurityConfiguration {
                     auth.anyRequest().authenticated();
                 });
 
-        http.oauth2ResourceServer()
-                .jwt()
-                .jwtAuthenticationConverter(jwtAuthenticationConverter());
+        http.oauth2ResourceServer(
+                oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())));
         http.sessionManagement(
                 session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
