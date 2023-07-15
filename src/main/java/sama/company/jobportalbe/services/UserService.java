@@ -24,6 +24,7 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder encoder;
+
     @Autowired
     private UserRepository userRepository;
 

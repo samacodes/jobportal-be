@@ -1,5 +1,6 @@
 package sama.company.jobportalbe.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,11 +14,12 @@ import java.util.Set;
 public class ApplicationUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
     private Integer userId;
 
+    @Column(unique = true)
     private String username;
 
+    @JsonIgnore
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
