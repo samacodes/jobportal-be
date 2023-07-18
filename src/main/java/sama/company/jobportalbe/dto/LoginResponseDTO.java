@@ -1,4 +1,6 @@
-package sama.company.jobportalbe.models;
+package sama.company.jobportalbe.dto;
+
+import sama.company.jobportalbe.models.ApplicationUser;
 
 public class LoginResponseDTO {
     private ApplicationUser user;
