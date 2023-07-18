@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import sama.company.jobportalbe.dto.LoginDTO;
+import sama.company.jobportalbe.dto.LoginResponseDTO;
+import sama.company.jobportalbe.dto.RegistrationDTO;
 import sama.company.jobportalbe.models.ApplicationUser;
-import sama.company.jobportalbe.models.LoginResponseDTO;
-import sama.company.jobportalbe.models.RegistrationDTO;
 import sama.company.jobportalbe.services.AuthenticationService;
 
 @RestController
@@ -19,11 +20,12 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ApplicationUser registerUser(@RequestBody RegistrationDTO body) {
-        return authenticationService.registerUser(body.getUsername(), body.getPassword());
+        return authenticationService.registerUser(body.getFirstName(), body.getLastName(), body.getEmail(),
+                body.getUsername(), body.getPassword(), body.getRole());
     }
 
     @PostMapping("/login")
-    public LoginResponseDTO loginUser(@RequestBody RegistrationDTO body) {
+    public LoginResponseDTO loginUser(@RequestBody LoginDTO body) {
         return authenticationService.loginUser(body.getUsername(), body.getPassword());
     }
 }

@@ -12,8 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
+import sama.company.jobportalbe.dto.LoginResponseDTO;
 import sama.company.jobportalbe.models.ApplicationUser;
-import sama.company.jobportalbe.models.LoginResponseDTO;
 import sama.company.jobportalbe.models.Role;
 import sama.company.jobportalbe.repository.RoleRepository;
 import sama.company.jobportalbe.repository.UserRepository;
@@ -34,16 +34,18 @@ public class AuthenticationService {
     @Autowired
     private TokenService tokenservice;
 
-    public ApplicationUser registerUser(String username, String password) {
+    public ApplicationUser registerUser(String firstName, String lastName, String email, String username,
+            String password, String role) {
 
         String encodedPassword = passwordEncoder.encode(password);
-        Role userRole = roleRepository.findByAuthority("USER").get();
+        Role userRole = roleRepository.findByAuthority(role).get();
 
         Set<Role> authorities = new HashSet<>();
 
         authorities.add(userRole);
 
-        return userRepository.save(new ApplicationUser(0, username, encodedPassword, authorities));
+        return userRepository
+                .save(new ApplicationUser(0, firstName, lastName, email, username, encodedPassword, authorities));
     }
 
     public LoginResponseDTO loginUser(String username, String password) {

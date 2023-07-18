@@ -29,11 +29,14 @@ public class JobportalBeApplication {
                 return;
             Role adminRole = roleRepository.save(new Role("ADMIN"));
             roleRepository.save(new Role("USER"));
+            roleRepository.save(new Role("GIVER"));
+            roleRepository.save(new Role("SEEKER"));
 
             Set<Role> roles = new HashSet<>();
             roles.add(adminRole);
 
-            ApplicationUser admin = new ApplicationUser(1, "admin", passwordEncoder.encode("password"), roles);
+            ApplicationUser admin = new ApplicationUser(1, "Admin", "Admin", "admin@admin.com", "admin",
+                    passwordEncoder.encode("admin"), roles);
             userRepository.save(admin);
         };
     }
