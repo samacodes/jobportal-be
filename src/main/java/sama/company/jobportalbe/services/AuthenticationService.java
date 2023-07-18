@@ -56,7 +56,7 @@ public class AuthenticationService {
                 .save(new ApplicationUser(0, firstName, lastName, email, username, encodedPassword, authorities));
     }
 
-    public LoginResponseDTO loginUser(String username, String password) {
+    public LoginResponseDTO loginUser(String username, String password) throws Exception {
 
         try {
             Authentication auth = authenticationManager.authenticate(
@@ -67,7 +67,7 @@ public class AuthenticationService {
             return new LoginResponseDTO(userRepository.findByUsername(username).get(), token);
 
         } catch (AuthenticationException e) {
-            return new LoginResponseDTO(null, "");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username/password supplied");
         }
     }
 

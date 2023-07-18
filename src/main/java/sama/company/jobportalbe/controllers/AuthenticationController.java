@@ -22,20 +22,30 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ApplicationUser registerUser(@RequestBody RegistrationDTO body) {
         try {
-            ApplicationUser user = authenticationService.registerUser(body.getFirstName(), body.getLastName(),
+            return authenticationService.registerUser(body.getFirstName(), body.getLastName(),
                     body.getEmail(),
                     body.getUsername(), body.getPassword(), body.getRole());
-            return user;
         } catch (Exception e) {
             if (e instanceof ResponseStatusException) {
                 throw (ResponseStatusException) e;
+            } else {
+                throw new ResponseStatusException(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR,
+                        "Something went wrong");
             }
         }
-        return null;
     }
 
     @PostMapping("/login")
     public LoginResponseDTO loginUser(@RequestBody LoginDTO body) {
-        return authenticationService.loginUser(body.getUsername(), body.getPassword());
+        try {
+            return authenticationService.loginUser(body.getUsername(), body.getPassword());
+        } catch (Exception e) {
+            if (e instanceof ResponseStatusException) {
+                throw (ResponseStatusException) e;
+            } else {
+                throw new ResponseStatusException(org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR,
+                        "Something went wrong");
+            }
+        }
     }
 }
