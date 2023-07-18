@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import sama.company.jobportalbe.dto.LoginDTO;
 import sama.company.jobportalbe.dto.LoginResponseDTO;
@@ -20,8 +21,17 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ApplicationUser registerUser(@RequestBody RegistrationDTO body) {
-        return authenticationService.registerUser(body.getFirstName(), body.getLastName(), body.getEmail(),
-                body.getUsername(), body.getPassword(), body.getRole());
+        try {
+            ApplicationUser user = authenticationService.registerUser(body.getFirstName(), body.getLastName(),
+                    body.getEmail(),
+                    body.getUsername(), body.getPassword(), body.getRole());
+            return user;
+        } catch (Exception e) {
+            if (e instanceof ResponseStatusException) {
+                throw (ResponseStatusException) e;
+            }
+        }
+        return null;
     }
 
     @PostMapping("/login")
