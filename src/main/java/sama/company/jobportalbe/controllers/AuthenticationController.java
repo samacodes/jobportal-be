@@ -22,9 +22,13 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ApplicationUser registerUser(@RequestBody RegistrationDTO body) {
         try {
-            return authenticationService.registerUser(body.getFirstName(), body.getLastName(),
-                    body.getEmail(),
-                    body.getUsername(), body.getPassword(), body.getRole());
+            String firstName = body.getFirstName();
+            String lastName = body.getLastName();
+            String email = body.getEmail();
+            String username = body.getUsername();
+            String password = body.getPassword();
+            String role = body.getRole();
+            return authenticationService.registerUser(firstName, lastName, email, username, password, role);
         } catch (Exception e) {
             if (e instanceof ResponseStatusException) {
                 throw (ResponseStatusException) e;
