@@ -8,7 +8,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "jobs")
@@ -27,7 +27,7 @@ public class Job {
 
     private String salary;
 
-    private Date createdAt;
+    private Timestamp createdAt;
 
     // make a foreign key to the company table
     @ManyToOne
@@ -46,7 +46,7 @@ public class Job {
         this.location = location;
         this.salary = salary;
         this.company = company;
-        this.createdAt = new Date(System.currentTimeMillis());
+        this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 
 
@@ -106,11 +106,11 @@ public class Job {
         this.company = company;
     }
 
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 }
