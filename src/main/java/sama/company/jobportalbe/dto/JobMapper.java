@@ -16,6 +16,7 @@ public class JobMapper {
                 job.getLocation(),
                 job.getSalary(),
                 job.getCompany().getCompanyName(),
+                job.getImageUrl(),
                 job.getCreatedAt().toString() // Format the createdAt as needed
         );
     }

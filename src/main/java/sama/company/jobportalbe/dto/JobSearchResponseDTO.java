@@ -12,18 +12,20 @@ public class JobSearchResponseDTO {
     private String salary;
     private String company;
     private String createdAt;
+    private String image;
 
     public JobSearchResponseDTO() {
         super();
     }
 
-    public JobSearchResponseDTO(Integer id, String title, String desc, String location, String salary, String company, String createdAt) {
+    public JobSearchResponseDTO(Integer id, String title, String desc, String location, String salary, String company, String image, String createdAt) {
         this.id = id;
         this.title = title;
         this.desc = desc;
         this.location = location;
         this.salary = salary;
         this.company = company;
+        this.image = image;
         this.createdAt = createdAt;
     }
 
@@ -81,5 +83,13 @@ public class JobSearchResponseDTO {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
