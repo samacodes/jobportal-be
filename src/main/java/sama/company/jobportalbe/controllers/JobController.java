@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import sama.company.jobportalbe.dto.JobSearchResponseDTO;
 import sama.company.jobportalbe.services.JobService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/jobs")
 public class JobController {
@@ -15,7 +17,13 @@ public class JobController {
     private JobService jobService;
 
     @GetMapping
-    public JobSearchResponseDTO getJobs(@RequestParam(name = "job", required = false) String job, @RequestParam(name = "location", required = false) String location) {
+    public List<JobSearchResponseDTO> getJobs(@RequestParam(name = "job", required = false) String job, @RequestParam(name = "location", required = false) String location) {
+        if (job == null) {
+            job = "";
+        }
+        if (location == null) {
+            location = "";
+        }
         return jobService.searchJobs(job, location);
     }
 

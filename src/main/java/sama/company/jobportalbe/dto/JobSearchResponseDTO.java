@@ -5,33 +5,81 @@ import sama.company.jobportalbe.models.Job;
 import java.util.List;
 
 public class JobSearchResponseDTO {
-    private Job job;
-
-    private List<Job> jobs;
+    private Integer id;
+    private String title;
+    private String desc;
+    private String location;
+    private String salary;
+    private String company;
+    private String createdAt;
 
     public JobSearchResponseDTO() {
         super();
     }
 
-    public JobSearchResponseDTO(Job job) {
-        super();
-        this.job = job;
+    public JobSearchResponseDTO(Integer id, String title, String desc, String location, String salary, String company, String createdAt) {
+        this.id = id;
+        this.title = title;
+        this.desc = desc;
+        this.location = location;
+        this.salary = salary;
+        this.company = company;
+        this.createdAt = createdAt;
     }
 
-    public JobSearchResponseDTO(List<Job> jobs) {
-        super();
-        this.jobs = jobs;
+    public Integer getId() {
+        return id;
     }
 
-    public Job getJob() {
-        return job;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setJob(Job job) {
-        this.job = job;
+    public String getTitle() {
+        return title;
     }
 
-    public List<Job> getJobs() {
-        return jobs;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
     }
 }
