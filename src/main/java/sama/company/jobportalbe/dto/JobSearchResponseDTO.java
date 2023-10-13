@@ -13,12 +13,13 @@ public class JobSearchResponseDTO {
     private String company;
     private String createdAt;
     private String image;
+    private Boolean isApplied;
 
     public JobSearchResponseDTO() {
         super();
     }
 
-    public JobSearchResponseDTO(Integer id, String title, String desc, String location, String salary, String company, String image, String createdAt) {
+    public JobSearchResponseDTO(Integer id, String title, String desc, String location, String salary, String company, String image, String createdAt, Boolean isApplied) {
         this.id = id;
         this.title = title;
         this.desc = desc;
@@ -27,6 +28,7 @@ public class JobSearchResponseDTO {
         this.company = company;
         this.image = image;
         this.createdAt = createdAt;
+        this.isApplied = isApplied;
     }
 
     public Integer getId() {
@@ -91,5 +93,13 @@ public class JobSearchResponseDTO {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public Boolean getApplied() {
+        return isApplied;
+    }
+
+    public void setApplied(Boolean applied) {
+        isApplied = applied;
     }
 }

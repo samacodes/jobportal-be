@@ -28,4 +28,14 @@ public interface JobRepository extends JpaRepository<Job, Integer> {
             "LOWER(j.title) LIKE LOWER(CONCAT('%', :title, '%')) AND " +
             "LOWER(j.location) LIKE LOWER(CONCAT('%', :location, '%'))")
     List<Job> searchJobsByTitleAndLocation(String title, String location);
+
+    // search job by title
+    @Query("SELECT j FROM Job j WHERE " +
+            "LOWER(j.title) LIKE LOWER(CONCAT('%', :title, '%'))")
+    List<Job> searchJobsByTitle(String title);
+
+    // search job by location
+    @Query("SELECT j FROM Job j WHERE " +
+            "LOWER(j.location) LIKE LOWER(CONCAT('%', :location, '%'))")
+    List<Job> searchJobsByLocation(String location);
 }

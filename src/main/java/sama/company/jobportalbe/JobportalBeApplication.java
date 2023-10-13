@@ -36,7 +36,7 @@ public class JobportalBeApplication {
             roles.add(adminRole);
 
             ApplicationUser admin = new ApplicationUser(1, "Admin", "Admin", "admin@admin.com", "admin",
-                    passwordEncoder.encode("admin"), roles);
+                    passwordEncoder.encode("admin"), roles, null);
             userRepository.save(admin);
         };
     }

@@ -53,7 +53,7 @@ public class AuthenticationService {
         authorities.add(userRole);
 
         return userRepository
-                .save(new ApplicationUser(0, firstName, lastName, email, username, encodedPassword, authorities));
+                .save(new ApplicationUser(0, firstName, lastName, email, username, encodedPassword, authorities, null));
     }
 
     public LoginResponseDTO loginUser(String username, String password) throws Exception {

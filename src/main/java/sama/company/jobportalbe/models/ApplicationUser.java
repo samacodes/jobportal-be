@@ -44,13 +44,19 @@ public class ApplicationUser implements UserDetails {
     @JoinTable(name = "user_role_junction", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> authorities;
 
+    // create a user job junction table to store the jobs that the user has applied to
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_job_junction", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "job_id"))
+    private Set<Job> jobs;
+
     public ApplicationUser() {
         super();
         this.authorities = new HashSet<Role>();
+        this.jobs = new HashSet<Job>();
     }
 
     public ApplicationUser(Integer userId, String firstName, String lastName, String email, String username,
-            String password, Set<Role> authoritiess) {
+            String password, Set<Role> authorities, Set<Job> jobs) {
         super();
         this.userId = userId;
         this.firstName = firstName;
@@ -58,7 +64,8 @@ public class ApplicationUser implements UserDetails {
         this.email = email;
         this.username = username;
         this.password = password;
-        this.authorities = authoritiess;
+        this.authorities = authorities;
+        this.jobs = jobs;
     }
 
     public Integer getUserId() {
@@ -140,4 +147,16 @@ public class ApplicationUser implements UserDetails {
         this.email = email;
     }
 
+    public Set<Job> getJobs() {
+        return jobs;
+    }
+
+    public void setJobs(Set<Job> jobs) {
+        this.jobs = jobs;
+    }
+
+    // create a method to get the list of applied jobs
+    public Set<Job> getAppliedJobs() {
+        return this.jobs;
+    }
 }
