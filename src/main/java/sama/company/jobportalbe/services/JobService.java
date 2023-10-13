@@ -69,7 +69,8 @@ public class JobService {
         // get the list of jobs
         List<Job> jobs = jobRepository.findAllJobs();
         // return the jobs
-        return jobMapper.mapJobsToDTOList(jobs, appliedJobIds);
+        List<JobSearchResponseDTO> allJobs = jobMapper.mapJobsToDTOList(jobs, appliedJobIds);
+        return allJobs.stream().filter(JobSearchResponseDTO::getApplied).toList();
     }
 
     // apply for a job
